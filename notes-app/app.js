@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const yargs = require('yargs');
 const fs = require('fs');
 
-const getNotes = require('./notes');
+const notes = require('./notes');
 
 // customize yargs version
 yargs.version('1.0.1');
@@ -24,9 +24,7 @@ yargs.command({
 		},
 	},
 	handler: argv => {
-		console.log(`Adding note. \nTitle: ${argv.title} \nBody: ${argv.body}`);
-		const note = { title: argv.title, body: argv.body };
-		fs.writeFileSync('notes.json', JSON.stringify(note));
+		notes.add(argv.title, argv.body);
 	},
 });
 
@@ -44,10 +42,7 @@ yargs.command({
 	command: 'list',
 	describe: 'List all notes',
 	handler: () => {
-		console.log('listing all notes');
-		const dataBuffer = fs.readFileSync('notes.json');
-		const note = JSON.parse(dataBuffer.toString());
-		console.log(note);
+		notes.list();
 	},
 });
 
