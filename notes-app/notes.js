@@ -1,4 +1,5 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
 const add = (title, body) => {
 	const note = { title, body };
@@ -8,11 +9,11 @@ const add = (title, body) => {
 	});
 
 	if (duplicateNotes.length != 0) {
-		console.log('Title taken!');
+		console.log(chalk.red('Title taken!'));
 	} else {
 		notes.push(note);
 		save(notes);
-		console.log('New note added.');
+		console.log(chalk.green('New note added.'));
 	}
 };
 
@@ -44,10 +45,10 @@ const remove = title => {
 	});
 
 	if (updatedNotes.length === notes.length) {
-		console.log('Title not found!');
+		console.log(chalk.red('Title not found!'));
 	} else {
 		save(updatedNotes);
-		console.log('Note deleted.');
+		console.log(chalk.green('Note deleted.'));
 	}
 };
 
