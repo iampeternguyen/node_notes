@@ -1,4 +1,4 @@
-chalk = require('chalk');
+const chalk = require('chalk');
 const getNotes = require('./notes');
 
 const msg = getNotes();
