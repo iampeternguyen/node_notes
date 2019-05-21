@@ -4,9 +4,7 @@ const chalk = require('chalk');
 const add = (title, body) => {
 	const note = { title, body };
 	let notes = getNotes();
-	let duplicateNotes = notes.filter(note => {
-		return note.title === title;
-	});
+	let duplicateNotes = notes.filter(note => note.title === title);
 
 	if (duplicateNotes.length != 0) {
 		console.log(chalk.red('Title taken!'));
@@ -23,9 +21,7 @@ const save = notes => {
 
 const list = () => {
 	let notes = getNotes();
-	notes.forEach((note, index) => {
-		console.log(`${index + 1}. ${note.title}`);
-	});
+	notes.forEach((note, index) => console.log(`${index + 1}. ${note.title}`));
 };
 
 const getNotes = () => {
@@ -40,9 +36,7 @@ const getNotes = () => {
 
 const remove = title => {
 	let notes = getNotes();
-	updatedNotes = notes.filter(note => {
-		return note.title !== title;
-	});
+	updatedNotes = notes.filter(note => note.title !== title);
 
 	if (updatedNotes.length === notes.length) {
 		console.log(chalk.red('Title not found!'));
